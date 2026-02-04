@@ -103,6 +103,24 @@ The backend server will run at: http://localhost:3000
 Ensure both frontend and backend are running simultaneously for full functionality.
 ```
 
+## 📸 Admin Dashboard Screenshots
+
+<img src="projects/admin/screenshot/1.png" width="200"/>
+<img src="projects/admin/screenshot/2.png" width="200"/>
+<img src="projects/admin/screenshot/3.png" width="200"/>
+<img src="projects/admin/screenshot/4.png" width="200"/>
+<img src="projects/admin/screenshot/5.png" width="200"/>
+<img src="projects/admin/screenshot/6.png" width="200"/>
+<img src="projects/admin/screenshot/7.png" width="200"/>
+<img src="projects/admin/screenshot/8.png" width="200"/>
+<img src="projects/admin/screenshot/9.png" width="200"/>
+<img src="projects/admin/screenshot/10.png" width="200"/>
+<img src="projects/admin/screenshot/11.png" width="200"/>
+<img src="projects/admin/screenshot/12.png" width="200"/>
+<img src="projects/admin/screenshot/13.png" width="200"/>
+
+```
+
 ✅ Notes
 
 Node.js (v18+) and npm (v10+) are required.
@@ -124,3 +142,4 @@ Prettier – Code formatting with Angular rules
 Aya Osama
 
 GitHub: Aya123O
+```
