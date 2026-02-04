@@ -1,0 +1,443 @@
+<!-- Card Container - Enhanced Design -->
+<div class="card border-0 h-100 bg-gradient-light">
+  <!-- Card Header - Elegant -->
+  <div class="bg-gradient-primary text-white p-3 position-sticky top-0 z-2 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="flex-grow-1 pe-3">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <div
+            class="bg-white bg-opacity-20 rounded-circle p-1 d-flex align-items-center justify-content-center"
+          >
+            <mat-icon style="font-size: 18px; width: 18px; height: 18px">task</mat-icon>
+          </div>
+          <h2 class="h5 fw-bold mb-0 text-truncate text-white">{{ data.title }}</h2>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-2">
+          <mat-icon style="font-size: 14px; width: 14px; height: 14px" class="text-white-75"
+            >calendar_today</mat-icon
+          >
+          <span class="small text-white-75">Created {{ data.createdAt | date: 'mediumDate' }}</span>
+          <span class="text-white-50 mx-1">•</span>
+          <span class="small text-white-75">{{ data.createdAt | date: 'shortTime' }}</span>
+        </div>
+      </div>
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="close()"
+        class="bg-white bg-opacity-20 hover-bg-white-30 transition-all"
+        matTooltip="Close"
+        matTooltipPosition="left"
+      >
+        <mat-icon style="font-size: 20px">close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scrollable Content Area -->
+  <div class="flex-grow-1 overflow-auto custom-scrollbar" style="max-height: calc(620px - 140px)">
+    <!-- Image Section with Overlay -->
+    <div class="position-relative image-container">
+      <div class="image-overlay"></div>
+      <img
+        [src]="data.image"
+        class="img-fluid w-100 object-fit-cover"
+        style="height: 160px"
+        alt="{{ data.title }} image"
+        onerror="
+          this.src =
+            'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+        "
+      />
+      <!-- Floating Status Badge -->
+      <mat-chip
+        class="position-absolute top-0 end-0 m-2 shadow-sm border-0 text-white fw-medium pulse-animation"
+        [class.bg-success]="data.status === 'active'"
+        [class.bg-warning]="data.status === 'pending'"
+        [class.bg-info]="data.status === 'completed'"
+        [class.bg-danger]="data.status === 'cancelled'"
+        selected
+        style="font-size: 11px; padding: 4px 10px"
+      >
+        <mat-icon style="font-size: 13px; width: 13px; height: 13px" class="me-1">
+          {{
+            data.status === 'active'
+              ? 'play_arrow'
+              : data.status === 'completed'
+                ? 'check_circle'
+                : data.status === 'cancelled'
+                  ? 'cancel'
+                  : 'schedule'
+          }}
+        </mat-icon>
+        {{ data.status | titlecase }}
+      </mat-chip>
+    </div>
+
+    <!-- Card Content -->
+    <div class="p-4">
+      <!-- Description Section -->
+      <div class="mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div class="d-flex align-items-center gap-2">
+            <div class="bg-primary bg-opacity-10 p-2 rounded-3">
+              <mat-icon class="text-primary" style="font-size: 18px">description</mat-icon>
+            </div>
+            <h3 class="h6 fw-bold text-dark mb-0">Task Description</h3>
+          </div>
+          <span class="badge bg-primary bg-opacity-10 text-primary small px-2 py-1">
+            {{ data.description?.length || 0 }} chars
+          </span>
+        </div>
+        <div class="card border-0 shadow-sm bg-white rounded-3">
+          <div class="card-body p-3">
+            <p class="mb-0 text-dark lh-base description-text" style="font-size: 13.5px">
+              {{ data.description || 'No description provided' }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details Section -->
+      <div class="mb-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="bg-primary bg-opacity-10 p-2 rounded-3">
+            <mat-icon class="text-primary" style="font-size: 18px">info</mat-icon>
+          </div>
+          <h4 class="h6 fw-bold text-dark mb-0">Task Details</h4>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="card border-0 bg-gradient-white shadow-sm hover-lift h-100">
+              <div class="card-body p-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="bg-primary bg-opacity-10 p-2 rounded-circle">
+                    <mat-icon class="text-primary" style="font-size: 16px">event</mat-icon>
+                  </div>
+                  <div>
+                    <div class="text-muted small mb-1">Created Date</div>
+                    <div class="fw-semibold text-dark small">
+                      {{ data.createdAt | date: 'fullDate' }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card border-0 bg-gradient-white shadow-sm hover-lift h-100">
+              <div class="card-body p-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="bg-primary bg-opacity-10 p-2 rounded-circle">
+                    <mat-icon class="text-primary" style="font-size: 16px">access_time</mat-icon>
+                  </div>
+                  <div>
+                    <div class="text-muted small mb-1">Creation Time</div>
+                    <div class="fw-semibold text-dark small">
+                      {{ data.createdAt | date: 'shortTime' }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Section (Custom Implementation) -->
+      <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="text-muted small">Task Progress</span>
+          <span
+            class="fw-semibold small"
+            [ngClass]="{
+              'text-primary': data.status === 'completed',
+              'text-accent': data.status === 'active',
+              'text-warning': data.status === 'pending',
+              'text-danger': data.status === 'cancelled',
+            }"
+          >
+            {{
+              data.status === 'completed'
+                ? '100%'
+                : data.status === 'active'
+                  ? '65%'
+                  : data.status === 'pending'
+                    ? '30%'
+                    : '0%'
+            }}
+          </span>
+        </div>
+        <div class="progress rounded-pill" style="height: 8px">
+          <div
+            class="progress-bar rounded-pill"
+            [ngClass]="{
+              'bg-primary': data.status === 'completed',
+              'bg-accent': data.status === 'active',
+              'bg-warning': data.status === 'pending',
+              'bg-danger': data.status === 'cancelled',
+            }"
+            role="progressbar"
+            [style.width.%]="
+              data.status === 'completed'
+                ? 100
+                : data.status === 'active'
+                  ? 65
+                  : data.status === 'pending'
+                    ? 30
+                    : 0
+            "
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Metadata Grid -->
+      <div class="mb-4">
+        <div class="card border-0 bg-light-subtle shadow-sm">
+          <div class="card-body p-3">
+            <div class="row g-2">
+              <div class="col-4">
+                <div class="text-center p-2 hover-scale">
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-2 d-inline-flex mb-2">
+                    <mat-icon class="text-primary" style="font-size: 18px">category</mat-icon>
+                  </div>
+                  <div class="text-muted small mb-1">Type</div>
+                  <div class="fw-semibold small">Task</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="text-center p-2 hover-scale">
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-2 d-inline-flex mb-2">
+                    <mat-icon class="text-primary" style="font-size: 18px">visibility</mat-icon>
+                  </div>
+                  <div class="text-muted small mb-1">Priority</div>
+                  <div class="fw-semibold small">Medium</div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="text-center p-2 hover-scale">
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-2 d-inline-flex mb-2">
+                    <mat-icon class="text-primary" style="font-size: 18px">update</mat-icon>
+                  </div>
+                  <div class="text-muted small mb-1">Updated</div>
+                  <div class="fw-semibold small">{{ data.createdAt | date: 'shortDate' }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed Footer Actions -->
+  <div class="border-top bg-white p-3 position-sticky bottom-0 z-2 shadow-sm">
+    <div class="d-flex justify-content-between gap-2">
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="close()"
+        class="flex-grow-1 rounded-pill border-2 hover-lift"
+        style="font-size: 13px; padding: 6px 16px"
+      >
+        <mat-icon style="font-size: 17px" class="me-2">keyboard_backspace</mat-icon>
+        Back to List
+      </button>
+      <div class="d-flex gap-2">
+        <button mat-mini-fab color="accent" class="shadow-sm" matTooltip="Share">
+          <mat-icon style="font-size: 18px">share</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="shadow-sm" matTooltip="Edit Task">
+          <mat-icon style="font-size: 18px">edit</mat-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="rounded-pill px-3 shadow-sm hover-lift"
+          style="font-size: 13px; padding: 6px 16px"
+          (click)="close()"
+        >
+          <mat-icon style="font-size: 17px" class="me-2">done</mat-icon>
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Enhanced Styles -->
+<style>
+  :host {
+    display: block;
+    height: 100%;
+  }
+
+  .card {
+    border-radius: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  }
+
+  .bg-gradient-white {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+  }
+
+  .bg-gradient-light {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+  }
+
+  .position-sticky {
+    position: sticky;
+    z-index: 2;
+  }
+
+  .bg-opacity-10 {
+    --bs-bg-opacity: 0.1;
+  }
+
+  .bg-opacity-20 {
+    --bs-bg-opacity: 0.2;
+  }
+
+  .rounded-2 {
+    border-radius: 8px !important;
+  }
+
+  .rounded-3 {
+    border-radius: 12px !important;
+  }
+
+  .small {
+    font-size: 12.5px !important;
+  }
+
+  .text-white-75 {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+
+  .text-white-50 {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  /* Color Classes */
+  .text-accent {
+    color: #ff4081 !important;
+  }
+
+  .bg-accent {
+    background-color: #ff4081 !important;
+  }
+
+  /* Image Overlay */
+  .image-container {
+    overflow: hidden;
+  }
+
+  .image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    pointer-events: none;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    transition: all 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .hover-scale {
+    transition: all 0.2s ease;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-bg-white-30:hover {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  /* Pulse Animation for Status */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(var(--bs-success-rgb), 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(var(--bs-success-rgb), 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(var(--bs-success-rgb), 0);
+    }
+  }
+
+  .pulse-animation {
+    animation: pulse 2s infinite;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4090 100%);
+  }
+
+  /* Description Text */
+  .description-text {
+    line-height: 1.7;
+    text-align: justify;
+  }
+
+  /* Transition Effects */
+  .transition-all {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Border Radius */
+  .rounded-pill {
+    border-radius: 50px !important;
+  }
+
+  /* Shadow */
+  .shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Progress Bar */
+  .progress {
+    background-color: #e9ecef;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    transition: width 0.6s ease;
+  }
+</style>

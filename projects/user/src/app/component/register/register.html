@@ -1,0 +1,171 @@
+<ngx-spinner type="ball-scale-multiple" color="#1976d2" size="medium"> </ngx-spinner>
+
+<div class="login-page">
+  <div class="login-container">
+    <!-- Left side - Branding -->
+    <div class="login-brand">
+      <div class="brand-logo">
+        <mat-icon class="logo-icon">shield</mat-icon>
+        <span class="logo-text">SecureApp</span>
+      </div>
+      <div class="brand-content">
+        <h1 class="brand-title">User Portal</h1>
+        <div class="brand-features">
+          <div class="feature">
+            <mat-icon class="feature-icon">verified</mat-icon>
+            <span>High-level security</span>
+          </div>
+          <div class="feature">
+            <mat-icon class="feature-icon">dashboard</mat-icon>
+            <span>Smart insights</span>
+          </div>
+          <div class="feature">
+            <mat-icon class="feature-icon">admin_panel_settings</mat-icon>
+            <span>Easy account management</span>
+          </div>
+        </div>
+      </div>
+      <div class="brand-footer">
+        <p>Need help? <a href="#">Contact Support</a></p>
+      </div>
+    </div>
+
+    <!-- Right side - Login Form -->
+    <div class="login-form-container">
+      <mat-card class="login-card">
+        <div class="form-header">
+          <div class="form-icon">
+            <mat-icon>lock_person</mat-icon>
+          </div>
+          <h2>Welcome Back</h2>
+          <p class="form-subtitle">Register in to create your account</p>
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <!-- Email Field -->
+          <mat-form-field appearance="outline" class="w-100 mb-3">
+            <mat-icon matPrefix>person</mat-icon>
+            <input
+              matInput
+              type="text"
+              formControlName="username"
+              placeholder="Enter your username"
+              autocomplete="username"
+            />
+            <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
+              Username is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Email Address</mat-label>
+            <mat-icon matPrefix>alternate_email</mat-icon>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="user@example.com"
+              autocomplete="email"
+            />
+
+            @if (registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+              <mat-error>
+                @if (registerForm.get('email')?.hasError('required')) {
+                  Email is required
+                }
+                @if (registerForm.get('email')?.hasError('email')) {
+                  Please enter a valid email address
+                }
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Password Field -->
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Password</mat-label>
+            <mat-icon matPrefix>key</mat-icon>
+            <input
+              matInput
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="hidePassword ? 'Show password' : 'Hide password'"
+            >
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+
+            @if (registerForm.get('password')?.touched && registerForm.get('password')?.invalid) {
+              <mat-error>
+                @if (registerForm.get('password')?.hasError('required')) {
+                  Password is required
+                }
+                @if (registerForm.get('password')?.hasError('minlength')) {
+                  Password must be at least 3 characters
+                }
+                @if (registerForm.get('password')?.hasError('maxlength')) {
+                  Password must be at least 20 characters
+                }
+              </mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field w-100 mb-3">
+            <mat-label>Confirm Password</mat-label>
+            <mat-icon matPrefix>key</mat-icon>
+            <input
+              matInput
+              [type]="hideConfirmPassword ? 'password' : 'text'"
+              formControlName="confirmpassword"
+              placeholder="Confirm your password"
+              autocomplete="new-password"
+            />
+            <!-- Toggle password visibility -->
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hideConfirmPassword = !hideConfirmPassword"
+              [attr.aria-label]="hideConfirmPassword ? 'Show password' : 'Hide password'"
+            >
+              <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error
+              *ngIf="
+                registerForm.hasError('passwordMismatch') &&
+                registerForm.get('confirmpassword')?.touched
+              "
+            >
+              Passwords do not match
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Submit Button -->
+          <button mat-flat-button color="primary" class="submit-button" type="submit">
+            Register Now
+          </button>
+          <a mat-flat-button color="primary" class="submit-button" routerLink="/login">
+            Are you have account ? login
+          </a>
+
+          <!-- Footer -->
+          <div class="form-footer">
+            <p>
+              By continuing, you agree to our <a href="#">Terms of Service</a> and
+              <a href="#">Privacy Policy</a>
+            </p>
+            <div class="security-badge">
+              <mat-icon>verified</mat-icon>
+              <span>Secure & Encrypted Connection</span>
+            </div>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,415 @@
+<div class="container py-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h2 fw-bold text-dark mb-1">Task Management Dashboard</h1>
+      <p class="text-muted mb-0">Monitor and manage your team's tasks efficiently</p>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary d-flex align-items-center">
+        <i class="bi bi-plus-circle me-2"></i>New Task
+      </button>
+      <button class="btn btn-outline-secondary d-flex align-items-center">
+        <i class="bi bi-download me-2"></i>Export
+      </button>
+    </div>
+  </div>
+
+  <!-- Quick Stats Cards -->
+  <div class="row g-4 mb-4">
+    <div *ngFor="let stat of quickStats" class="col-md-6 col-xl-3">
+      <div class="card border-0 shadow-sm h-100 hover-scale">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <div class="rounded-circle p-3" [ngClass]="'bg-' + stat.color + ' bg-opacity-10'">
+                <i [ngClass]="stat.icon + ' fs-4 text-' + stat.color"></i>
+              </div>
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h6 class="text-muted mb-1">{{ stat.title }}</h6>
+              <h3 class="fw-bold mb-1">{{ stat.value }}</h3>
+              <div class="d-flex align-items-center">
+                <span [ngClass]="stat.isPositive ? 'text-success' : 'text-danger'">
+                  <i
+                    [ngClass]="stat.isPositive ? 'bi bi-arrow-up-right' : 'bi bi-arrow-down-right'"
+                    class="me-1"
+                  ></i>
+                  {{ stat.change }}
+                </span>
+                <span class="text-muted ms-2 small">vs last month</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="row g-4 mb-4">
+    <!-- Task Status Distribution -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 py-3 d-flex align-items-center">
+          <div class="rounded-circle bg-primary bg-opacity-10 p-2 me-3">
+            <i class="bi bi-pie-chart text-primary"></i>
+          </div>
+          <div>
+            <h5 class="card-title mb-0">Task Status</h5>
+            <p class="text-muted small mb-0">Distribution Overview</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="height: 280px">
+            <canvas
+              baseChart
+              [data]="taskStatusChartData"
+              [options]="taskStatusChartOptions"
+              type="doughnut"
+            >
+            </canvas>
+          </div>
+          <div class="mt-3">
+            <div class="row text-center">
+              <div *ngFor="let label of taskStatusChartData.labels; let i = index" class="col-3">
+                <div class="d-flex flex-column">
+                  <span class="fw-bold fs-5">{{ taskStatusChartData.datasets[0].data[i] }}</span>
+                  <span class="text-muted small">{{ label }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task Priority -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 py-3 d-flex align-items-center">
+          <div class="rounded-circle bg-warning bg-opacity-10 p-2 me-3">
+            <i class="bi bi-bar-chart text-warning"></i>
+          </div>
+          <div>
+            <h5 class="card-title mb-0">Tasks by Priority</h5>
+            <p class="text-muted small mb-0">Priority level distribution</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="height: 280px">
+            <canvas
+              baseChart
+              [data]="taskPriorityChartData"
+              [options]="taskPriorityChartOptions"
+              type="bar"
+            >
+            </canvas>
+          </div>
+          <div class="mt-3 d-flex justify-content-around">
+            <div
+              *ngFor="let priority of taskPriorityChartData.labels; let i = index"
+              class="text-center"
+            >
+              <div class="d-flex align-items-center">
+                <div
+                  class="rounded-circle me-2"
+                  [style]="
+                    'width: 10px; height: 10px; background-color: ' +
+                    taskPriorityChartData.datasets[0].backgroundColor[i]
+                  "
+                ></div>
+                <span class="fw-bold me-2">{{ taskPriorityChartData.datasets[0].data[i] }}</span>
+                <span class="text-muted">{{ priority }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Performance -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 py-3">
+          <div class="d-flex align-items-center mb-2">
+            <div class="rounded-circle bg-success bg-opacity-10 p-2 me-3">
+              <i class="bi bi-graph-up text-success"></i>
+            </div>
+            <div>
+              <h5 class="card-title mb-0">Team Performance</h5>
+              <p class="text-muted small mb-0">Trend analysis over time</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+              <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-primary me-1" style="width: 8px; height: 8px"></div>
+                <span class="small">Tasks Completed</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-success me-1" style="width: 8px; height: 8px"></div>
+                <span class="small">Tasks Created</span>
+              </div>
+            </div>
+            <select
+              [(ngModel)]="selectedTimeRange"
+              class="form-select form-select-sm w-auto border-0 shadow-sm"
+            >
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="quarterly">Quarterly</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="height: 280px">
+            <canvas
+              baseChart
+              [data]="teamPerformanceChartData"
+              [options]="teamPerformanceChartOptions"
+              type="line"
+            >
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Tasks & Team Members -->
+  <div class="row g-4">
+    <!-- Recent Tasks -->
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div
+          class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center"
+        >
+          <div class="d-flex align-items-center">
+            <div class="rounded-circle bg-info bg-opacity-10 p-2 me-3">
+              <i class="bi bi-list-task text-info"></i>
+            </div>
+            <div>
+              <h5 class="card-title mb-0">Recent Tasks</h5>
+              <p class="text-muted small mb-0">Latest task updates and progress</p>
+            </div>
+          </div>
+          <a href="#" class="btn btn-outline-primary btn-sm">
+            View All <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th class="ps-4">Task</th>
+                  <th>Assignee</th>
+                  <th>Priority</th>
+                  <th>Status</th>
+                  <th>Due Date</th>
+                  <th class="pe-4">Progress</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let task of recentTasks" class="align-middle hover-row">
+                  <td class="ps-4">
+                    <div>
+                      <div class="d-flex align-items-center">
+                        <div
+                          class="rounded-circle p-1 me-2"
+                          [ngClass]="getAvatarColor(task.assignee)"
+                          style="width: 24px; height: 24px"
+                        ></div>
+                        <strong class="d-block">{{ task.title }}</strong>
+                      </div>
+                      <small class="text-muted">{{ task.project }}</small>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span>{{ task.assignee }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span
+                      class="badge rounded-pill py-1 px-3"
+                      [ngClass]="getPriorityBadgeClass(task.priority)"
+                    >
+                      <i
+                        [class]="
+                          task.priority === 'high'
+                            ? 'bi bi-chevron-double-up'
+                            : task.priority === 'medium'
+                              ? 'bi bi-chevron-up'
+                              : 'bi bi-chevron-down'
+                        "
+                        class="me-1 small"
+                      ></i>
+                      {{ getPriorityText(task.priority) }}
+                    </span>
+                  </td>
+                  <td>
+                    <span
+                      class="badge rounded-pill py-1 px-3"
+                      [ngClass]="getStatusBadgeClass(task.status)"
+                    >
+                      <i
+                        [class]="
+                          task.status === 'completed'
+                            ? 'bi bi-check-circle'
+                            : task.status === 'in-progress'
+                              ? 'bi bi-arrow-clockwise'
+                              : task.status === 'overdue'
+                                ? 'bi bi-exclamation-triangle'
+                                : 'bi bi-clock'
+                        "
+                        class="me-1 small"
+                      ></i>
+                      {{ getStatusText(task.status) }}
+                    </span>
+                  </td>
+                  <td>
+                    <div
+                      [ngClass]="{
+                        'text-danger fw-bold': isOverdue(task.dueDate),
+                        'text-warning fw-bold': isDueSoon(task.dueDate),
+                        'text-success': !isOverdue(task.dueDate) && !isDueSoon(task.dueDate),
+                      }"
+                    >
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-calendar3 me-2"></i>
+                        {{ formatDate(task.dueDate) }}
+                      </div>
+                      <small *ngIf="isOverdue(task.dueDate)" class="d-block text-danger">
+                        Overdue
+                      </small>
+                      <small
+                        *ngIf="isDueSoon(task.dueDate) && !isOverdue(task.dueDate)"
+                        class="d-block text-warning"
+                      >
+                        Due soon
+                      </small>
+                    </div>
+                  </td>
+                  <td class="pe-4">
+                    <div class="d-flex align-items-center">
+                      <div class="progress flex-grow-1 me-2" style="height: 6px">
+                        <div
+                          class="progress-bar rounded-pill"
+                          [ngClass]="getProgressBarClass(task.progress)"
+                          [style.width.%]="task.progress"
+                          role="progressbar"
+                        ></div>
+                      </div>
+                      <span class="text-muted small fw-bold">{{ task.progress }}%</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Members -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 py-3">
+          <div class="d-flex align-items-center">
+            <div class="rounded-circle bg-primary bg-opacity-10 p-2 me-3">
+              <i class="bi bi-people text-primary"></i>
+            </div>
+            <div>
+              <h5 class="card-title mb-0">Team Members</h5>
+              <p class="text-muted small mb-0">Team performance metrics</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="list-group list-group-flush">
+            <div
+              *ngFor="let member of teamMembers"
+              class="list-group-item border-0 px-0 py-3 hover-scale"
+            >
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0 position-relative">
+                  <div class="rounded-circle p-3" [ngClass]="getAvatarColor(member.name)">
+                    <span class="fw-bold">{{ member.avatar }}</span>
+                  </div>
+                  <div
+                    class="position-absolute bottom-0 end-0 rounded-circle border border-white"
+                    [ngClass]="getProductivityClass(member.productivity) + ' bg-white'"
+                    style="width: 20px; height: 20px"
+                  >
+                    <i
+                      class="bi bi-lightning-charge small d-flex align-items-center justify-content-center w-100 h-100"
+                    ></i>
+                  </div>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <h6 class="mb-1">{{ member.name }}</h6>
+                  <p class="text-muted small mb-2">{{ member.role }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <span
+                        class="badge rounded-pill bg-success bg-opacity-10 text-success me-2 py-1"
+                      >
+                        <i class="bi bi-check-circle me-1"></i>{{ member.completedTasks }}
+                      </span>
+                      <span class="badge rounded-pill bg-warning bg-opacity-10 text-warning py-1">
+                        <i class="bi bi-clock me-1"></i>{{ member.pendingTasks }}
+                      </span>
+                    </div>
+                    <div
+                      class="d-flex align-items-center"
+                      [ngClass]="getProductivityClass(member.productivity)"
+                    >
+                      <i class="bi bi-lightning-charge me-1"></i>
+                      <span class="fw-bold">{{ member.productivity }}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-white border-0 pt-0">
+          <div class="text-center">
+            <a href="#" class="text-decoration-none small">
+              <i class="bi bi-plus-circle me-1"></i>Invite Team Member
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Info -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center text-muted">
+              <i class="bi bi-info-circle me-2"></i>
+              <div>
+                <span class="d-block small">Last updated</span>
+                <span class="fw-bold">{{ today | date: 'medium' }}</span>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <span class="badge bg-light text-dark py-2 px-3 rounded-pill">
+                <i class="bi bi-person me-1"></i>{{ teamMembers.length }} Team Members
+              </span>
+              <span class="badge bg-primary bg-opacity-10 text-primary py-2 px-3 rounded-pill">
+                <i class="bi bi-clipboard-check me-1"></i>{{ recentTasks.length }} Active Tasks
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

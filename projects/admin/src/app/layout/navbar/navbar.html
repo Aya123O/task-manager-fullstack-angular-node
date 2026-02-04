@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm" [dir]="direction">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold fs-4" routerLink="/admin">{{ 'navbar.brand' | translate }}</a>
+
+    <!-- Toggler for mobile -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#adminNavbar"
+      aria-controls="adminNavbar"
+      aria-expanded="false"
+      [attr.aria-label]="'navbar.toggle' | translate"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="adminNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/admin/dashboard">{{
+            'navbar.dashboard' | translate
+          }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/users">{{ 'navbar.users' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/admin/settings">{{
+            'navbar.settings' | translate
+          }}</a>
+        </li>
+      </ul>
+
+      <!-- Right-side icons -->
+      <div class="d-flex align-items-center gap-3">
+        <!-- Notifications -->
+        <button
+          mat-icon-button
+          class="position-relative"
+          [matTooltip]="'navbar.notifications' | translate"
+        >
+          <mat-icon>notifications</mat-icon>
+          <span
+            class="badge bg-danger position-absolute top-0 start-100 translate-middle p-1 rounded-circle"
+          >
+            3
+          </span>
+        </button>
+
+        <!-- User Menu -->
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="userMenu"
+          [matTooltip]="'navbar.userMenu' | translate"
+        >
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item routerLink="/admin/profile">
+            <mat-icon>person</mat-icon>
+            {{ 'navbar.profile' | translate }}
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            {{ 'navbar.logout' | translate }}
+          </button>
+        </mat-menu>
+
+        <!-- Language Toggle -->
+        <mat-slide-toggle
+          [aria-label]="'navbar.languageToggle' | translate"
+          (change)="changelang()"
+        >
+          {{ lang === 'en' ? 'AR' : 'EN' }}
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </div>
+</nav>

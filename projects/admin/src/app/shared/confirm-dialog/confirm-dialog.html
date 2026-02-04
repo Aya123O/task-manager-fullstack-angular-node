@@ -1,0 +1,34 @@
+<mat-dialog-content class="dialog-content">
+  <div class="dialog-wrapper">
+    <div class="confirmation-container">
+      <!-- Icon -->
+      <div class="icon-container">
+        <mat-icon class="warning-icon">warning</mat-icon>
+      </div>
+
+      <!-- Title -->
+      <h2 class="dialog-title">Confirm Action</h2>
+
+      <!-- Message -->
+      <p class="dialog-message">Are you sure you want to close it? This action cannot be undone.</p>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <!-- No/Cancel Button -->
+  <button
+    mat-stroked-button
+    color="primary"
+    mat-dialog-close
+    class="cancel-button"
+    (click)="close()"
+  >
+    Cancel
+  </button>
+
+  <!-- Yes/Confirm Button -->
+  <button mat-raised-button color="warn" mat-dialog-close="true" class="confirm-button" (click)="confirm()">
+    Confirm
+  </button>
+</mat-dialog-actions>

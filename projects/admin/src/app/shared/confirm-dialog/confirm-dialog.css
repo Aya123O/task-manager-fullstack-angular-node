@@ -1,0 +1,174 @@
+/* Dialog container - centers everything */
+:host ::ng-deep .mat-mdc-dialog-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+:host ::ng-deep .mat-mdc-dialog-surface {
+  margin: 0 auto !important;
+  position: relative !important;
+  overflow: visible !important;
+  max-height: none !important;
+}
+
+.dialog-content {
+  padding: 24px 32px 16px 32px;
+  min-width: 200px;
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden !important;
+
+  /* Prevent horizontal scroll */
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.dialog-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmation-container {
+  text-align: center;
+  padding: 16px 0;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.icon-container {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.warning-icon {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  color: #ff9800;
+}
+
+.dialog-title {
+  color: #212121;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+  text-align: center;
+  width: 100%;
+}
+
+.dialog-message {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  padding: 0 8px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.dialog-actions {
+  padding: 8px 24px 16px 24px;
+  margin: 0;
+  border-top: 1px solid #e0e0e0;
+  gap: 12px;
+  min-height: auto;
+  display: flex;
+  justify-content: center;
+
+  button {
+    min-width: 100px;
+    height: 36px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 20px;
+    border-radius: 4px;
+  }
+}
+
+.cancel-button {
+  border-color: #757575;
+  color: #757575;
+
+  &:hover {
+    background-color: rgba(117, 117, 117, 0.04);
+    border-color: #424242;
+    color: #424242;
+  }
+}
+
+.confirm-button {
+  background-color: #ff9800;
+  color: white;
+
+  &:hover {
+    background-color: #f57c00;
+  }
+}
+
+/* Alternative - Fixed width solution to prevent horizontal scroll */
+.fixed-width-dialog {
+  :host ::ng-deep .mat-mdc-dialog-container {
+    max-width: 500px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .dialog-content {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden !important;
+  }
+}
+
+/* Media query for responsiveness */
+@media (max-width: 480px) {
+  .dialog-content {
+    padding: 20px 24px 12px 24px;
+    min-width: 280px;
+    max-width: 100%;
+  }
+
+  .confirmation-container {
+    max-width: 100%;
+    padding: 12px 0;
+  }
+
+  .dialog-actions {
+    padding: 8px 20px 16px 20px;
+
+    button {
+      min-width: 90px;
+      padding: 0 16px;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .dialog-content {
+    padding: 16px 20px 8px 20px;
+  }
+
+  .dialog-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    button {
+      min-width: 80px;
+      padding: 0 12px;
+    }
+  }
+}

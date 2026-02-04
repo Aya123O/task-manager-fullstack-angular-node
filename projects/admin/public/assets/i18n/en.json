@@ -1,0 +1,62 @@
+{
+  "tasks": {
+    "loading": "Loading...",
+    "title": "Tasks List",
+    "addTask": "Add Task",
+    "search": "Search",
+    "selectUser": "Select User",
+    "status": "Status",
+    "dateRange": "Enter a date range",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "columns": {
+      "image": "Image",
+      "title": "Title",
+      "user": "User",
+      "description": "Description",
+      "deadline": "Deadline",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "noData": "No tasks found",
+    "pagination": {
+      "page": "Page",
+      "of": "of",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "form": {
+      "addTitle": "Add New Task",
+      "updateTitle": "Update Task",
+      "title": "Title",
+      "titlePlaceholder": "Enter task title",
+      "titleRequired": "Title is required",
+      "minLengthError": "Minimum length is 5 characters",
+      "maxLengthError": "Maximum length is 50 characters",
+      "image": "Task Image",
+      "imageRequired": "Image is required",
+      "selectUser": "Select a user",
+      "userRequired": "User is required",
+      "descriptionPlaceholder": "Enter task description",
+      "close": "Close",
+      "create": "Create",
+      "update": "Update"
+    }
+  },
+  "navbar": {
+    "brand": "AdminPanel",
+    "toggle": "Toggle navigation",
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "userMenu": "User menu",
+    "profile": "Profile",
+    "logout": "Logout",
+    "languageToggle": "Toggle language"
+  }
+}

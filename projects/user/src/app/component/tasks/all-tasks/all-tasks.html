@@ -1,0 +1,248 @@
+<div class="tasks-container container py-4">
+  <div
+    class="task-item card mb-4 shadow-sm border-0 rounded-3 overflow-hidden"
+    *ngFor="let task of tasks"
+  >
+    <div class="row g-0">
+      <!-- Image Column -->
+      @if (task.image) {
+        <div class="col-md-4 col-lg-3">
+          <img
+            [src]="task.image"
+            class="img-fluid w-100 h-100 object-fit-cover"
+            style="min-height: 200px"
+            alt="{{ task.title }} image"
+          />
+        </div>
+      }
+
+      <!-- Content Column -->
+      <div [class]="task.image ? 'col-md-8 col-lg-3' : 'col-12'">
+        <div class="card-body p-4">
+          <!-- Header with Status -->
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <h3 class="card-title fw-bold mb-0 text-primary">{{ task.title }}</h3>
+            <span
+              class="badge rounded-pill"
+              [ngClass]="{
+                'bg-success': task.status === 'Completed',
+                'bg-warning': task.status === 'In-Progress',
+                'bg-info': task.status === 'Pending',
+                'bg-secondary': !['Completed', 'In-Progress', 'Pending'].includes(task.status),
+              }"
+            >
+              {{ task.status }}
+            </span>
+          </div>
+
+          <!-- Description -->
+          <p class="card-text text-muted mb-4 fs-5">
+            {{ task.description }}
+          </p>
+
+          <!-- Footer with Additional Info -->
+          <div class="d-flex justify-content-between align-items-center border-top pt-3">
+            <small class="text-muted">
+              <i class="bi bi-calendar3 me-1"></i>
+              Created: {{ task.createdAt | date: 'mediumDate' }}
+            </small>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="(viewTask)">
+                <i class="bi bi-eye me-1"></i>View
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-success btn-sm"
+                (click)="completeTask(task)"
+              >
+                <i class="bi bi-pencil me-1"></i>Complete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Keep your existing in-progress tasks code here -->
+  <div
+    class="task-item card mb-4 shadow-sm border-0 rounded-3 overflow-hidden"
+    *ngFor="let task of tasks"
+  >
+    <!-- Your existing in-progress tasks HTML -->
+  </div>
+
+  <!-- Enhanced Completed Tasks Section -->
+  <div class="completed-tasks-section mt-5 pt-5 border-top">
+    <div class="section-header mb-5">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <div class="d-flex align-items-center mb-2">
+            <div class="icon-wrapper bg-success-subtle rounded-circle p-3 me-3">
+              <i class="bi bi-check-circle-fill text-success fs-2"></i>
+            </div>
+            <div>
+              <h2 class="fw-bold text-dark mb-1">Completed Tasks</h2>
+              <p class="text-muted mb-0">Your accomplishments and finished work</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-end">
+          <span class="achievement-badge bg-success text-white px-3 py-2 rounded-pill fs-5">
+            <i class="bi bi-trophy me-2"></i>
+            {{ completeTasksList.length }} Tasks Completed
+          </span>
+        </div>
+      </div>
+    </div>
+
+    @if (completeTasksList.length === 0) {
+      <div class="empty-state text-center py-5 my-5">
+        <div class="empty-icon mb-4">
+          <i class="bi bi-check-circle text-success" style="font-size: 5rem"></i>
+        </div>
+        <h3 class="text-success mb-3">No Tasks Completed Yet</h3>
+        <p class="text-muted mb-4">Complete some tasks to build your achievement list!</p>
+        <div class="placeholder-card mx-auto" style="max-width: 300px">
+          <div class="card border-dashed border-2 border-success-subtle rounded-3 p-4">
+            <div class="d-flex align-items-center">
+              <div class="placeholder-icon bg-success-subtle rounded-circle p-3 me-3">
+                <i class="bi bi-plus-lg text-success"></i>
+              </div>
+              <div>
+                <p class="text-muted mb-0">Your first completed task will appear here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="completed-tasks-grid">
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-lg-4" *ngFor="let task of completeTasksList">
+            <div class="completed-card card border-0 shadow-sm h-100 hover-lift">
+              <!-- Status Badge -->
+              <div class="completion-badge position-absolute top-0 start-0 m-3">
+                <span class="badge bg-success px-3 py-2 rounded-pill">
+                  <i class="bi bi-check-lg me-1"></i>Completed
+                </span>
+              </div>
+
+              <!-- Card Content -->
+              <div class="card-body p-4">
+                <!-- Task Title -->
+                <h5 class="card-title fw-bold text-dark mb-3">
+                  <i class="bi bi-check-square text-success me-2"></i>
+                  {{ task.title }}
+                </h5>
+
+                <!-- Description -->
+                <p class="card-text text-muted mb-4">
+                  {{ task.description }}
+                </p>
+
+                <!-- Completion Timeline -->
+                <div class="timeline mb-4">
+                  <div class="timeline-item d-flex align-items-center mb-2">
+                    <div
+                      class="timeline-icon bg-success-subtle text-success rounded-circle p-2 me-3"
+                    >
+                      <i class="bi bi-calendar-plus"></i>
+                    </div>
+                    <div class="timeline-content">
+                      <small class="text-muted d-block">Created Date</small>
+                      <strong>{{ task.createdAt | date: 'MMM dd, yyyy' }}</strong>
+                    </div>
+                  </div>
+                  <div class="timeline-item d-flex align-items-center">
+                    <div class="timeline-icon bg-success text-white rounded-circle p-2 me-3">
+                      <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                      <small class="text-muted d-block">Completed On</small>
+                      <strong class="text-success">{{
+                        task.updatedAt || task.createdAt | date: 'MMM dd, yyyy'
+                      }}</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Task Image (if exists) -->
+                @if (task.image) {
+                  <div class="task-image mb-4 rounded-3 overflow-hidden">
+                    <img
+                      [src]="task.image"
+                      class="img-fluid w-100 rounded-3"
+                      alt="{{ task.title }}"
+                      style="height: 150px; object-fit: cover"
+                    />
+                  </div>
+                }
+              </div>
+
+              <!-- Card Footer -->
+              <div class="card-footer bg-transparent border-top pt-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <button
+                    type="button"
+                    class="btn btn-outline-success btn-sm"
+                    (click)="viewTask(task)"
+                  >
+                    <i class="bi bi-eye me-1"></i>View Details
+                  </button>
+                  <span class="text-muted small">
+                    <i class="bi bi-clock-history me-1"></i>
+                    Finished
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completion Summary -->
+        <div class="completion-summary mt-5">
+          <div class="card border-0 bg-success-subtle rounded-4 overflow-hidden">
+            <div class="card-body p-4">
+              <h5 class="fw-bold text-dark mb-4">
+                <i class="bi bi-bar-chart-fill text-success me-2"></i>
+                Completion Progress
+              </h5>
+              <div class="row text-center">
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <div class="stat-card bg-white rounded-3 p-3 shadow-sm">
+                    <div class="stat-icon mb-2">
+                      <i class="bi bi-check-circle-fill text-success fs-1"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-1">{{ completeTasksList.length }}</h3>
+                    <p class="text-muted mb-0">Total Completed</p>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <div class="stat-card bg-white rounded-3 p-3 shadow-sm">
+                    <div class="stat-icon mb-2">
+                      <i class="bi bi-calendar-week text-success fs-1"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-1">
+                      <!-- This will show count - you can add logic if needed -->
+                      {{ completeTasksList.length }}
+                    </h3>
+                    <p class="text-muted mb-0">All Time</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="stat-card bg-white rounded-3 p-3 shadow-sm">
+                    <div class="stat-icon mb-2">
+                      <i class="bi bi-award text-success fs-1"></i>
+                    </div>
+                    <h3 class="fw-bold text-dark mb-1">100%</h3>
+                    <p class="text-muted mb-0">Success Rate</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,62 @@
+{
+  "tasks": {
+    "loading": "جار التحميل...",
+    "title": "قائمة المهام",
+    "addTask": "إضافة مهمة",
+    "search": "بحث",
+    "selectUser": "اختر مستخدم",
+    "status": "الحالة",
+    "dateRange": "أدخل نطاق تاريخ",
+    "startDate": "تاريخ البداية",
+    "endDate": "تاريخ الانتهاء",
+    "columns": {
+      "image": "الصورة",
+      "title": "العنوان",
+      "user": "المستخدم",
+      "description": "الوصف",
+      "deadline": "الموعد النهائي",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    },
+    "actions": {
+      "edit": "تعديل",
+      "delete": "حذف"
+    },
+    "noData": "لم يتم العثور على مهام",
+    "pagination": {
+      "page": "صفحة",
+      "of": "من",
+      "previous": "الصفحة السابقة",
+      "next": "الصفحة التالية"
+    },
+    "form": {
+      "addTitle": "إضافة مهمة جديدة",
+      "updateTitle": "تحديث المهمة",
+      "title": "العنوان",
+      "titlePlaceholder": "أدخل عنوان المهمة",
+      "titleRequired": "العنوان مطلوب",
+      "minLengthError": "الحد الأدنى للحروف هو 5",
+      "maxLengthError": "الحد الأقصى للحروف هو 50",
+      "image": "صورة المهمة",
+      "imageRequired": "الصورة مطلوبة",
+      "selectUser": "اختر مستخدم",
+      "userRequired": "المستخدم مطلوب",
+      "descriptionPlaceholder": "أدخل وصف المهمة",
+      "close": "إغلاق",
+      "create": "إنشاء",
+      "update": "تحديث"
+    }
+  },
+  "navbar": {
+    "brand": "لوحة التحكم",
+    "toggle": "تبديل التنقل",
+    "dashboard": "لوحة التحكم",
+    "users": "المستخدمين",
+    "settings": "الإعدادات",
+    "notifications": "الإشعارات",
+    "userMenu": "قائمة المستخدم",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "languageToggle": "تبديل اللغة"
+  }
+}

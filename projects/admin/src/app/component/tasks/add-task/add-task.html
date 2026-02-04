@@ -1,0 +1,199 @@
+<ngx-spinner type="ball-scale-multiple" color="#1976d2" size="medium"> </ngx-spinner>
+<div class="modal-container">
+  @if (updateData) {
+    <h1 mat-dialog-title>{{ 'tasks.form.updateTitle' | translate }}</h1>
+  } @else {
+    <h1 mat-dialog-title>{{ 'tasks.form.addTitle' | translate }}</h1>
+  }
+
+  <div mat-dialog-content>
+    <form [formGroup]="addTaskForm" class="p-1">
+      <!-- Title Field -->
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>{{ 'tasks.form.title' | translate }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'tasks.form.titlePlaceholder' | translate"
+          formControlName="title"
+        />
+        @if (
+          addTaskForm.get('title')?.hasError('required') &&
+          (addTaskForm.get('title')?.touched || addTaskForm.get('title')?.dirty)
+        ) {
+          <mat-error>{{ 'tasks.form.titleRequired' | translate }}</mat-error>
+        }
+        @if (
+          addTaskForm.get('title')?.hasError('minlength') &&
+          (addTaskForm.get('title')?.touched || addTaskForm.get('title')?.dirty)
+        ) {
+          <mat-error>{{ 'tasks.form.minLengthError' | translate }}</mat-error>
+        }
+        @if (
+          addTaskForm.get('title')?.hasError('maxlength') &&
+          (addTaskForm.get('title')?.touched || addTaskForm.get('title')?.dirty)
+        ) {
+          <mat-error>{{ 'tasks.form.maxLengthError' | translate }}</mat-error>
+        }
+      </mat-form-field>
+      <div appearance="outline" class="w-100 mb-3">
+        <mat-label for="taskImage">{{ 'tasks.form.image' | translate }}</mat-label>
+
+        <input
+          type="file"
+          id="taskImage"
+          class="custom-file-input"
+          (change)="selectImage($event)"
+        />
+        @if (
+          addTaskForm.get('image')?.hasError('required') &&
+          (addTaskForm.get('image')?.touched || addTaskForm.get('image')?.dirty)
+        ) {
+          <mat-error>{{ 'tasks.form.imageRequired' | translate }}</mat-error>
+        }
+      </div>
+
+      <!-- User Field -->
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>{{ 'tasks.columns.user' | translate }}</mat-label>
+        <mat-select formControlName="userId">
+          <mat-option value="" disabled>{{ 'tasks.form.selectUser' | translate }}</mat-option>
+          @for (user of users; track user._id) {
+            <mat-option [value]="user._id">{{ user.username }}</mat-option>
+          }
+        </mat-select>
+        @if (
+          addTaskForm.get('userId')?.hasError('required') &&
+          (addTaskForm.get('userId')?.touched || addTaskForm.get('userId')?.dirty)
+        ) {
+          <mat-error>{{ 'tasks.form.userRequired' | translate }}</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Deadline Field -->
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>{{ 'tasks.columns.deadline' | translate }}</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="deadline" />
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Description Field -->
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>{{ 'tasks.columns.description' | translate }}</mat-label>
+        <textarea
+          matInput
+          rows="3"
+          [placeholder]="'tasks.form.descriptionPlaceholder' | translate"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-stroked-button color="warn" (click)="close()">
+      {{ 'tasks.form.close' | translate }}
+    </button>
+    @if (updateData) {
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="updateTask()"
+        [disabled]="addTaskForm.invalid"
+      >
+        {{ 'tasks.form.update' | translate }}
+      </button>
+    } @else {
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="createTask()"
+        [disabled]="addTaskForm.invalid"
+      >
+        {{ 'tasks.form.create' | translate }}
+      </button>
+    }
+  </div>
+</div>
+
+<style>
+  .modal-container {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close-btn:hover {
+    color: #b02a37;
+  }
+
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #333;
+    display: block;
+  }
+
+  .form-control,
+  .form-select {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 10px 12px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    outline: none;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+  }
+
+  .btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+    background-color: transparent;
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+  }
+</style>

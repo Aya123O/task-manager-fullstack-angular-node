@@ -1,0 +1,7 @@
+@if (auth.isLoggedIn()) {
+  <app-navbar></app-navbar>
+}
+
+<div class="container m-3" [dir]="direction()">
+  <router-outlet></router-outlet>
+</div>

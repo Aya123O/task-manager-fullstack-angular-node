@@ -1,0 +1,9 @@
+{
+  "navbar": {
+    "brand": "MyApp",
+    "home": "Home",
+    "tasks": "Tasks",
+    "profile": "Profile",
+    "logout": "Logout"
+  }
+}
