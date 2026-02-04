@@ -111,7 +111,7 @@ Ensure both frontend and backend are running simultaneously for full functionali
   <tr>
     <td align="center">
       <img src="projects/admin/screenshot/1.png" width="200"/><br>
-      Login Page / صفحة تسجيل الدخول
+      Task List / قائمة المهام
     </td>
     <td align="center">
       <img src="projects/admin/screenshot/2.png" width="200"/><br>
@@ -139,7 +139,7 @@ Ensure both frontend and backend are running simultaneously for full functionali
   <tr>
     <td align="center">
       <img src="projects/admin/screenshot/7.png" width="200"/><br>
-      Notification Task Created / إشعار: تم إنشاء المهمة
+      Notification Task updated / إشعار: تم تعديل المهمة
     </td>
     <td align="center">
       <img src="projects/admin/screenshot/8.png" width="200"/><br>
@@ -147,13 +147,13 @@ Ensure both frontend and backend are running simultaneously for full functionali
     </td>
     <td align="center">
       <img src="projects/admin/screenshot/9.png" width="200"/><br>
-      Task Details / تفاصيل المهمة
-    </td>
+Translate Tasks / ترجمة المهام
+   </td>
   </tr>
   <tr>
     <td align="center">
       <img src="projects/admin/screenshot/10.png" width="200"/><br>
-      Translate Tasks / ترجمة المهام
+       Task updated / تعديل المهام
     </td>
     <td align="center">
       <img src="projects/admin/screenshot/11.png" width="200"/><br>
