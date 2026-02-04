@@ -12,6 +12,6 @@ export const routes: Routes = [
 
   { path: 'tasks/all-tasks', component: ListTasks, canActivate: [authGuard] },
   { path: 'users', component: Users, canActivate: [authGuard] },
-  {path:'admin/dashboard' ,component:DashboardAdmin},
+  { path: 'admin/dashboard', component: DashboardAdmin },
   { path: '**', redirectTo: '' },
 ];
