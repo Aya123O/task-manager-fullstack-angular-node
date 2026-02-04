@@ -153,7 +153,7 @@ Translate Tasks / ترجمة المهام
   <tr>
     <td align="center">
       <img src="projects/admin/screenshot/10.png" width="200"/><br>
-       Task updated / تعديل المهام
+       user status updated / تعديل حالة اليوزر
     </td>
     <td align="center">
       <img src="projects/admin/screenshot/11.png" width="200"/><br>
@@ -172,6 +172,35 @@ Translate Tasks / ترجمة المهام
   </tr>
 </table>
 
+```
+## 📸 User App Screenshots
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="projects/user/screenshot/1.png" width="200"/><br>
+      Login / تسجيل الدخول
+    </td>
+    <td align="center">
+      <img src="projects/user/screenshot/2.png" width="200"/><br>
+      Display User Tasks / عرض مهام المستخدم
+    </td>
+    <td align="center">
+      <img src="projects/user/screenshot/3.png" width="200"/><br>
+      Completed Tasks / المهام المكتملة
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="projects/user/screenshot/4.png" width="200"/><br>
+      Completed Tasks / المهام المكتملة
+    </td>
+    <td align="center">
+      <img src="projects/user/screenshot/5.png" width="200"/><br>
+      Task Details / تفاصيل المهمة
+    </td>
+  </tr>
+</table>
 ```
 
 ✅ Notes
@@ -195,4 +224,7 @@ Prettier – Code formatting with Angular rules
 Aya Osama
 
 GitHub: Aya123O
+
+```
+
 ```
