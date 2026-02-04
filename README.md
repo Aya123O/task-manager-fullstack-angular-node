@@ -105,21 +105,73 @@ Ensure both frontend and backend are running simultaneously for full functionali
 
 ## 📸 Admin Dashboard Screenshots
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+## 📸 Admin Dashboard Screenshots
 
-<img src="projects/admin/screenshot/1.png" width="200"/>
-<img src="projects/admin/screenshot/2.png" width="200"/>
-<img src="projects/admin/screenshot/3.png" width="200"/>
-<img src="projects/admin/screenshot/4.png" width="200"/>
-<img src="projects/admin/screenshot/5.png" width="200"/>
-<img src="projects/admin/screenshot/6.png" width="200"/>
-<img src="projects/admin/screenshot/7.png" width="200"/>
-<img src="projects/admin/screenshot/8.png" width="200"/>
-<img src="projects/admin/screenshot/9.png" width="200"/>
-<img src="projects/admin/screenshot/10.png" width="200"/>
-<img src="projects/admin/screenshot/11.png" width="200"/>
-<img src="projects/admin/screenshot/12.png" width="200"/>
-<img src="projects/admin/screenshot/13.png" width="200"/>
+<div style="display: flex; flex-wrap: wrap; gap: 15px;">
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/1.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>Login Page</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/2.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>Tasks Management</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/3.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+   <p>Task List</p>
+</div>
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/6.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>Task List with pagagination</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/4.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>Add / Edit Task</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/5.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>close without save changes</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/7.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p> Notification Task created </p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/8.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>Notification Task Delete </p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/9.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>Task Details</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/10.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>Translate Tasks in Arabic</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/11.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+  <p>Login</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/12.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+   <p>Statistics Overview</p>
+</div>
+
+<div style="flex: 1 0 200px; text-align: center;">
+  <img src="projects/admin/screenshot/13.png" width="200" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+ <p>Statistics Overview</p>
+</div>
 
 </div>
 
