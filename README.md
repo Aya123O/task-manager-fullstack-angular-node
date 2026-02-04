@@ -105,8 +105,6 @@ Ensure both frontend and backend are running simultaneously for full functionali
 
 ## 📸 Admin Dashboard Screenshots
 
-## 📸 Admin Dashboard Screenshots
-
 <table>
   <tr>
     <td align="center">
@@ -172,7 +170,6 @@ Translate Tasks / ترجمة المهام
   </tr>
 </table>
 
-```
 ## 📸 User App Screenshots
 
 <table>
