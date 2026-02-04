@@ -47,7 +47,7 @@
               Created: {{ task.createdAt | date: 'mediumDate' }}
             </small>
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-outline-primary btn-sm" (click)="(viewTask)">
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="viewTask(task)">
                 <i class="bi bi-eye me-1"></i>View
               </button>
               <button

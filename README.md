@@ -1,59 +1,130 @@
-# MyWorkspace
+# Task Manager – Full Stack (Angular + Node.js)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.5.
+A **full-stack task management system** built with **Angular 21 (Frontend)** and **Node.js (Backend)**.
+The workspace contains **two separate Angular applications**:
 
-## Development server
+- **Admin Dashboard** – manage users, tasks, and view analytics
+- **User App** – manage personal tasks, with full CRUD operations
 
-To start a local development server, run:
+Shared services, interfaces, and utilities are stored in a **shared folder** for code reusability.
 
-```bash
+---
+
+## 🚀 Features
+
+### 👤 User Application
+
+- User authentication (login/register)
+- Create, read, update, delete tasks (CRUD)
+- Task status management (pending / completed)
+- Pagination for task lists
+- Multi-language support (i18n)
+- Responsive UI for mobile and desktop
+
+### 🛠 Admin Dashboard
+
+- Manage all users (CRUD)
+- View and manage all tasks across the platform
+- Dashboard charts & statistics (using Chart.js and Highcharts)
+- Role-based access control
+- Loading indicators and toast notifications
+
+---
+
+## 🧱 Tech Stack
+
+### Frontend
+
+- **Angular 21** – robust frontend framework
+- **Angular Material** – UI components
+- **Bootstrap 5** – responsive design
+- **RxJS** – reactive programming
+- **ngx-translate/core** – multi-language support
+- **ngx-pagination** – pagination
+- **ngx-spinner** – loading indicators
+- **ngx-toastr** – toast notifications
+- **Chart.js / ng2-charts** – charts
+- **Highcharts / highcharts-angular** – interactive charts
+- **Moment.js** – date handling
+
+### Backend
+
+- **Node.js + Express.js** – RESTful API
+- **Authentication & Authorization** (JWT)
+- **Database**: MySQL / MongoDB (adjust according to your setup)
+
+---
+
+## 📂 Project Structure
+
+```text
+my-workspace/
+├── admin-app/       # Angular Admin Dashboard
+├── user-app/        # Angular User Application
+├── shared/          # Shared services, interfaces, and utilities
+├── backend/         # Node.js API
+└── package.json     # Shared dependencies and scripts
+```
+
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/Aya123O/task-manager-fullstack-angular-node.git
+cd task-manager-fullstack-angular-node
+
+```
+
+2️⃣ Install Dependencies
+npm install
+```
+
+3️⃣ Run Frontend (Angular Apps)
+
+By default, the user-app will be served:
+
+npm start
+
+To run the Admin Dashboard, navigate to the admin folder and run:
+
+cd admin-app
 ng serve
+
+Open your browser at: http://localhost:4200
+
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4️⃣ Run Backend (Node.js API)
+cd backend
+npm install
+npm run dev
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The backend server will run at: http://localhost:3000
 
-```bash
-ng generate component component-name
+Ensure both frontend and backend are running simultaneously for full functionality.
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+✅ Notes
 
-```bash
-ng generate --help
+Node.js (v18+) and npm (v10+) are required.
+
+Update environment variables in the backend if needed (.env file).
+
+Frontend and backend communicate via RESTful APIs.
+
+For production, build Angular apps using ng build --configuration production.
+
+🧪 Testing & Formatting
+
+Vitest – Unit testing
+
+Prettier – Code formatting with Angular rules
+
+👩‍💻 Author
+
+Aya Osama
+
+GitHub: Aya123O
+
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
