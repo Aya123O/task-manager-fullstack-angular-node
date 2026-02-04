@@ -175,25 +175,25 @@ Translate Tasks / ترجمة المهام
 <table>
   <tr>
     <td align="center">
-      <img src="projects/user/screenshot/1.png" width="200"/><br>
+      <img src="projects/user/screenshots/1.png"width="200"/><br>
       Login / تسجيل الدخول
     </td>
     <td align="center">
-      <img src="projects/user/screenshot/2.png" width="200"/><br>
+      <img src="projects/user/screenshots/2.png" width="200"/><br>
       Display User Tasks / عرض مهام المستخدم
     </td>
     <td align="center">
-      <img src="projects/user/screenshot/3.png" width="200"/><br>
+      <img src="projects/user/screenshots/3.png" width="200"/><br>
       Completed Tasks / المهام المكتملة
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="projects/user/screenshot/4.png" width="200"/><br>
+      <img src="projects/user/screenshots/4.png" width="200"/><br>
       Completed Tasks / المهام المكتملة
     </td>
     <td align="center">
-      <img src="projects/user/screenshot/5.png" width="200"/><br>
+      <img src="projects/user/screenshots/5.png" width="200"/><br>
       Task Details / تفاصيل المهمة
     </td>
   </tr>
