@@ -124,7 +124,3 @@ Prettier – Code formatting with Angular rules
 Aya Osama
 
 GitHub: Aya123O
-
-```
-
-```
